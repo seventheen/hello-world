@@ -1,0 +1,50 @@
+Mysql安装配置
+安装mysql
+rpm -ivh http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm 
+yum -y install mysql-server mysql
+systemctl start mysqld.service
+配置mysql
+mysql 
+mysql> create database ghost;
+mysql> grant all on ghost.* to 'ghost'@localhost identified by 'ghost';
+mysql> flush privileges;
+这时执行mysql -ughost -pghost，就可以以ghost用户，ghost密码登录管理ghost数据库.（后面的ghost是密码）
+•  node安装
+安装node6
+curl -sL https://rpm.nodesource.com/setup_6.x | bash -  
+yum install nodejs
+验证
+node -v
+
+安装ghost-cli
+npm i -g ghost-cli
+最好升级一下最新的ghost-cli
+yum install -y git
+配置加速
+npm config set registry https://registry.npm.taobao.org
+安装过程
+
+npm i -g ghost-cli to update
+•  配置ghost用户
+adduser ghost
+mkdir /var/www/ghost
+chown ghost /var/www/ghost
+
+su ghost
+cd /var/www/ghost
+ghost install local --db mysql
+查看ghost
+ ghost ls
+可以看到ghost现在是运行在开发模式development下，下面修改为生产模式
+ghost stop
+cp config.development.json config.production.json
+在配置文件里面修改url，改成你自己的域名即可
+
+vi config.production.json
+
+"url": http://129.204.205.73/（域名）
+
+ghost start即可
+
+
+nginx代理，PM2一直运行
