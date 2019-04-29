@@ -1,0 +1,14 @@
+插入图片后文字不能转行：
+  添加一个容器，并设置改容器宽度
+  文字下两个不同颜色下划线：
+    .content_list_introduction{
+	width: 1000px;
+	margin: 20px;
+	/*padding-bottom: 10px;*/
+	border-bottom: 1px solid #ccc;
+}
+.content_list_introduction_title {
+	width: 68px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #00c3b6;
+} 
